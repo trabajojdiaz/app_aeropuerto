@@ -77,27 +77,29 @@ st.title('Datos Operaciones')
 # st.text(minimo)
 # st.subheader('Media')
 # st.text(media)
-col1, col2, col3 = st.columns (3)
 
-with col1:
-    st.metric('Minimo', f'{minimo:.0f}', border=True)
-with col2:
-    st.metric('Media', f'{media:.0f}', border=True)
-with col3:
-    st.metric('Máximo', f'{maximo:.0f}', border=True)
+with st.container(border=True):
+    col1, col2, col3 = st.columns (3)
 
-# st.metric('Máximo', f'{maximo:.0f}', border=True)
-# st.metric('Minimo', f'{minimo:.0f}', border=True)
-# st.metric('Media', f'{media:.0f}', border=True)
+    with col1:
+        st.metric('Minimo', f'{minimo:.0f}', '10%', border=True)
+    with col2:
+        st.metric('Media', f'{media:.0f}', '-5%', border=True)
+    with col3:
+        st.metric('Máximo', f'{maximo:.0f}', '15%', border=True)
 
-with st.expander('Ver Matriz de Datos'):
-    st.dataframe(df.head(10))
+    # st.metric('Máximo', f'{maximo:.0f}', border=True)
+    # st.metric('Minimo', f'{minimo:.0f}', border=True)
+    # st.metric('Media', f'{media:.0f}', border=True)
 
-# st.write('Top 5 Aeropuertos con Mayor Número de Operaciones:')
-# st.dataframe(df_top5_ops_aeropuerto)
+    with st.expander('Ver Matriz de Datos'):
+        st.dataframe(df.head(10))
 
-with st.expander('Top 5 Aeropuertos con Mayor Número de Operaciones:'):
-    st.dataframe(df_top5_ops_aeropuerto)
+    # st.write('Top 5 Aeropuertos con Mayor Número de Operaciones:')
+    # st.dataframe(df_top5_ops_aeropuerto)
+
+    with st.expander('Top 5 Aeropuertos con Mayor Número de Operaciones:'):
+        st.dataframe(df_top5_ops_aeropuerto)
 
 
 # Diseño de dos columnas para las gráficas de barras
