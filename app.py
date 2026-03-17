@@ -105,7 +105,7 @@ with col4:
     #_______________________________________________________________________________________________
     #  ANÁLISIS DE LOS AEROPUERTOS CON MAYOR NÚMERO DE OPERACIONES
 
-        fig_barras = px.bar(
+    fig_barras = px.bar(
         df_top5_ops_aeropuerto,
         x='AEROPUERTO_OPERACION',
         y='count',
