@@ -99,47 +99,50 @@ with st.expander('Ver Matriz de Datos'):
 with st.expander('Top 5 Aeropuertos con Mayor Número de Operaciones:'):
     st.dataframe(df_top5_ops_aeropuerto)
 
-col4, col5 = st.columns(2)
 
-with col4:
-    #_______________________________________________________________________________________________
-    #  ANÁLISIS DE LOS AEROPUERTOS CON MAYOR NÚMERO DE OPERACIONES
+# Diseño de dos columnas para las gráficas de barras
+with st.container(border=True):
+    col4, col5 = st.columns(2)
 
-    fig_barras = px.bar(
-        df_top5_ops_aeropuerto,
-        x='AEROPUERTO_OPERACION',
-        y='count',
-        title='Top 5 Aeropuertos con Mayor Número de Operaciones',
-        labels={
-            'AEROPUERTO_OPERACION' : 'Aeopuerto',
-            'count' : 'Número de Operaciones'
-        },
-        color='AEROPUERTO_OPERACION',
-        color_discrete_sequence=paleta_barras
-    )
+    with col4:
+        #_______________________________________________________________________________________________
+        #  ANÁLISIS DE LOS AEROPUERTOS CON MAYOR NÚMERO DE OPERACIONES
 
-    fig_barras.update_layout(showlegend=False)
+        fig_barras = px.bar(
+            df_top5_ops_aeropuerto,
+            x='AEROPUERTO_OPERACION',
+            y='count',
+            title='Top 5 Aeropuertos con Mayor Número de Operaciones',
+            labels={
+                'AEROPUERTO_OPERACION' : 'Aeopuerto',
+                'count' : 'Número de Operaciones'
+            },
+            color='AEROPUERTO_OPERACION',
+            color_discrete_sequence=paleta_barras
+        )
 
-    # Mostrar la gráfica de barras
-    st.plotly_chart(fig_barras, use_container_width=True)
+        fig_barras.update_layout(showlegend=False)
 
-with col5:
-    #_______________________________________________________________________________________________
-    #  ANÁLISIS DE RUTAS
-    df_top10_rutas = df_top10_rutas.sort_values('CANTIDAD', ascending=True)
-    fig_rutas = px.bar(
-        df_top10_rutas,
-        x='CANTIDAD',
-        y='RUTA',
-        title='Top 10 Rutas con Mayor Número de Operaciones',
-        # labels={
-        #     'AEROPUERTO_OPERACION' : 'Aeopuerto',
-        #     'count' : 'Número de Operaciones'
-        # },
-        color='CANTIDAD',
-        color_continuous_scale='aggrnyl'
-    )
-    fig_rutas.update_coloraxes(showscale=False)
-    # Mostrar la gráfica de barras
-    st.plotly_chart(fig_rutas, use_container_width=True)
+        # Mostrar la gráfica de barras
+        st.plotly_chart(fig_barras, use_container_width=True)
+
+    with col5:
+        #_______________________________________________________________________________________________
+        #  ANÁLISIS DE RUTAS
+        df_top10_rutas = df_top10_rutas.sort_values('CANTIDAD', ascending=True)
+        fig_rutas = px.bar(
+            df_top10_rutas,
+            x='CANTIDAD',
+            y='RUTA',
+            title='Top 10 Rutas con Mayor Número de Operaciones',
+            # labels={
+            #     'AEROPUERTO_OPERACION' : 'Aeopuerto',
+            #     'count' : 'Número de Operaciones'
+            # },
+            color='CANTIDAD',
+            color_continuous_scale='aggrnyl'
+        )
+        fig_rutas.update_coloraxes(showscale=False)
+        # Mostrar la gráfica de barras
+        st.plotly_chart(fig_rutas, use_container_width=True)
 
